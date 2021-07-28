@@ -1,8 +1,11 @@
 package com.devsuperior.hrpayroll.services;
 
+import com.devsuperior.hrpayroll.controllers.PaymentController;
 import com.devsuperior.hrpayroll.entities.Payment;
 import com.devsuperior.hrpayroll.entities.Worker;
 import com.devsuperior.hrpayroll.feignclients.WorkerFeignClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +20,15 @@ public class PaymentService {
 //    @Autowired
 //    private RestTemplate restTemplate;
 
+    private static Logger logger = LoggerFactory.getLogger(PaymentService.class);
+
     @Autowired
     private WorkerFeignClient workerFeignClient;
 
     public Payment getPayment (Long workerId, int days) {
 
         //Using Feign
+        logger.info("Calling workerFeignClient for id: " + workerId);
         Worker worker = workerFeignClient.findById(workerId).getBody();
 
         //For RestTemplate Calls

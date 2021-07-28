@@ -1,8 +1,7 @@
 package com.devsuperior.hrworker.controllers;
 
-import com.devsuperior.hrworker.WorkerService;
+import com.devsuperior.hrworker.services.WorkerService;
 import com.devsuperior.hrworker.entities.Worker;
-import com.devsuperior.hrworker.repositories.WorkerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class WorkerController {
     public ResponseEntity<Worker> findById(@PathVariable Long id){
 
         logger.info("PORT = " + env.getProperty("local.server.port"));
-
+        logger.info("Calling findWorkerById on workerService for id: " + id);
         Worker obj = workerService.findWorkerById(id);
         return ResponseEntity.ok(obj);
     }
