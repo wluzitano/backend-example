@@ -40,13 +40,13 @@ public class WorkerController {
         //            throw new RuntimeException("Runtime exception test");
         //        }
 
-        //O ribbon tem 1 seg, se eu colocar 3 vai estourar e ir pro alternativo, no postman, vai mostrar + de 1000 ms, que quer dizer que
-        //o timeout do ribbon foi estourado e retornou o metodo alternativo quando esse get eh chamado.
-        //        try {
-        //            Thread.sleep(3000L);
-        //        } catch (InterruptedException e) {
-        //            e.printStackTrace();
-        //        }
+//        O ribbon tem 1 seg, se eu colocar 3 vai estourar e ir pro alternativo, no postman, vai mostrar + de 1000 ms, que quer dizer que
+//        o timeout do ribbon foi estourado e retornou o metodo alternativo quando esse get eh chamado.
+//                try {
+//                    Thread.sleep(3000L);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
 
         logger.info("PORT = " + env.getProperty("local.server.port"));
         logger.info("Calling findWorkerById on workerService for id: " + id);

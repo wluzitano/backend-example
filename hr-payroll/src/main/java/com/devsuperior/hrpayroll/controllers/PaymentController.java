@@ -30,7 +30,7 @@ public class PaymentController {
     }
 
     public ResponseEntity<Payment> getPaymentAlternative(Long workerId, Integer days) {
-        Payment payment = new Payment("Brann", 400.0, days);
+        Payment payment = new Payment("Alternative Path called", 400.0, days);
         return ResponseEntity.ok(payment);
     }
 }
