@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 @RestControllerAdvice
 public class ExceptionAdviceRestController {
 
+
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<CustomErrorResponse> handleGenericNotFoundException(NotFoundException e) {
         CustomErrorResponse error = new CustomErrorResponse("NOT_FOUND_ERROR", e.getMessage());
