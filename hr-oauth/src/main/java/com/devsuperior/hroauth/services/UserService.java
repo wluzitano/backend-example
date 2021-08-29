@@ -14,10 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
 
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
+    private final UserFeignClient userFeignClient;
 
     @Autowired
-    UserFeignClient userFeignClient;
+    public UserService(UserFeignClient userFeignClient) {
+        this.userFeignClient = userFeignClient;
+    }
 
     public User findByEmail(String email) {
         try {

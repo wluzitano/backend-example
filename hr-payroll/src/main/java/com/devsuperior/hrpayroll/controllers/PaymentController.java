@@ -18,8 +18,12 @@ public class PaymentController {
 
     private static Logger logger = LoggerFactory.getLogger(PaymentController.class);
 
+    private final PaymentService paymentService;
+
     @Autowired
-    private PaymentService paymentService;
+    public PaymentController(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     @HystrixCommand(fallbackMethod = "getPaymentAlternative")
     @GetMapping(value = "/{workerId}/days/{days}")

@@ -6,17 +6,14 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-
-//You dont need to call Ribbon as you are using eureka
-//@RibbonClient(name = "hr-worker")
 @EnableCircuitBreaker
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
 public class HrPayrollApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HrPayrollApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HrPayrollApplication.class, args);
+    }
 
 }

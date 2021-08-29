@@ -1,6 +1,5 @@
 package com.devsuperior.hrpayroll.services;
 
-import com.devsuperior.hrpayroll.controllers.PaymentController;
 import com.devsuperior.hrpayroll.entities.Payment;
 import com.devsuperior.hrpayroll.entities.Worker;
 import com.devsuperior.hrpayroll.feignclients.WorkerFeignClient;
@@ -12,29 +11,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-// This is commented because we are using Feign
-//    @Value("${hr-worker.host}")
-//    private String workerHostUrl;
+    private static final Logger logger = LoggerFactory.getLogger(PaymentService.class);
 
-// This is commented because we are using Feign
-//    @Autowired
-//    private RestTemplate restTemplate;
-
-    private static Logger logger = LoggerFactory.getLogger(PaymentService.class);
+    private final WorkerFeignClient workerFeignClient;
 
     @Autowired
-    private WorkerFeignClient workerFeignClient;
+    public PaymentService(WorkerFeignClient workerFeignClient) {
+        this.workerFeignClient = workerFeignClient;
+    }
 
-    public Payment getPayment (Long workerId, int days) {
-
-        //Using Feign
+    public Payment getPayment(Long workerId, int days) {
         logger.info("Calling workerFeignClient for id: " + workerId);
-        Worker worker = workerFeignClient.findById(workerId).getBody();
-
-        //For RestTemplate Calls
-//        Map<String, String> uriVariables = new HashMap<>();
-//        uriVariables.put("id", workerId.toString());
-//        Worker worker = restTemplate.getForObject(workerHostUrl + "/workers/{id}", Worker.class, uriVariables);
-        return new Payment(worker.getName(), worker.getDailyIncome(), days);
+        try {
+            Worker worker = workerFeignClient.findById(workerId).getBody();
+            return new Payment(worker.getName(), worker.getDailyIncome(), days);
+        } catch (Exception e) {
+            throw new IllegalStateException("Error calling work feign client", e);
+        }
     }
 }

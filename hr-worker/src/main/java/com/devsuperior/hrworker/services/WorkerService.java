@@ -19,7 +19,7 @@ public class WorkerService {
     }
 
     public Worker findWorkerById(Long id){
-        Worker worker = repository.findById(id).get();
+        Worker worker = repository.findById(id).orElse(null);
         return worker;
     }
 }

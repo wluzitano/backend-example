@@ -22,8 +22,13 @@ import java.util.Arrays;
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+
+    private final JwtTokenStore tokenStore;
+
     @Autowired
-    private JwtTokenStore tokenStore;
+    public ResourceServerConfig(JwtTokenStore tokenStore) {
+        this.tokenStore = tokenStore;
+    }
 
     private static final String[] PUBLIC = {"/hr-oauth/oauth/token"};
     private static final String[] OPERATOR = {"/hr-worker/**"};
