@@ -1,2 +1,5 @@
 # ms-course
-worker project
+
+Project builded with:
+- Mava 11
+- Maven
