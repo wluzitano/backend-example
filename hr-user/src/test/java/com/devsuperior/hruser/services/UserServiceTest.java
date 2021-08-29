@@ -3,6 +3,7 @@ package com.devsuperior.hruser.services;
 import com.devsuperior.hruser.entities.User;
 import com.devsuperior.hruser.repositories.UserRepository;
 import javassist.NotFoundException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
+
     UserService userService;
 
     @Mock
@@ -33,7 +35,6 @@ class UserServiceTest {
 
     @BeforeEach
     public void beforeEach() {
-        MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository);
     }
 

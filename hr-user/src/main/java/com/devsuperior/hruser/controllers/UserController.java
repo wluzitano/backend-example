@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping(value = "users/{id}")
-    public ResponseEntity<User> findId(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<User> findById(@PathVariable Long id) throws NotFoundException {
         logger.info("Calling findUserById on userService for id: " + id);
         return Optional.ofNullable(userService.findUserById(id))
                 .map(user -> ResponseEntity.ok(user))
