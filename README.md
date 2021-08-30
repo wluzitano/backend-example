@@ -1,4 +1,4 @@
-# ms-course
+backend-example
 
 Microservices created with:
 - Java 11
